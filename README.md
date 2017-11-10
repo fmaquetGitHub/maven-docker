@@ -1,5 +1,2 @@
-mvn clean install
+mvn clean install dockerfile:build
 
-mvn spring-boot:run
-
-http://localhost:8080
