@@ -38,8 +38,8 @@
             <!-- tag::plugin[] -->
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.3.4</version>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.0</version>
 		<executions>
                     <execution>
                         <phase>package</phase>
@@ -48,8 +48,18 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+               <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageTag>${project.version}</imageTag>
+                    <imageTag>latest</imageTag>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                           <!-- <include>app.jar</include>-->
+                            <targetPath>/target</targetPath>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
             <!-- end::plugin[] -->
